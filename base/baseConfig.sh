@@ -6,7 +6,7 @@
 # If used in combination with the apt-get upgrade command, they install the newest versions of
 # all packages currently available.
 # Let's update the base sytem
-apt-get update -y
+apt-get update && apt-get upgrade
 
 # Fasten your seat belts!
 # Google should be fine!
