@@ -52,7 +52,7 @@ mkdir -p /etc/nginxCaching/downloads
 wget http://wordpress.org/latest.tar.gz /etc/nginxCaching/downloads/latest.tar.gz
 # unpack the tar.gz
 # code will come here
-tar -xvzf /etc/nginxCaching/wordpress/latest.tar.gz
+tar -xvzf /etc/nginxCaching/downloads/latest.tar.gz
 cp -R /etc/nginxCaching/downloads/wordpress/* /srv/changeme/html
 
 
@@ -76,7 +76,12 @@ apt-get install libvarnishapi1
 apt-get install libvarnish1
 apt-get install varnish
 # now we have to configure Varnish 
-## lines here
+## config lines here...
+
+chown root:www-data /srv/changeme/html
+chmod 775 /srv/changeme/html
+cat "Does the website work?" > /srv/changeme/html/index.html
+service nginx start
 
 # make installation done
 # will create a better solution later on

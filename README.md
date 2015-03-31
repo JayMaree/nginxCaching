@@ -6,6 +6,11 @@ nginxCaching  - What? Well, read the following lines:
 - High end CDN solutions ( geo based - high speed - alot space )
 - High speed multi channeled wordpress hosting
 
+Nice to have
+-------
+1) Fully automated installation ( a part is already coded )
+2) ... more will come
+
 Basic security
 -------
 1) Start using SSH keys
