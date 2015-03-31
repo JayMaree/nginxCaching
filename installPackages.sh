@@ -62,6 +62,17 @@ mv /etc/nginxCaching/configs/nginx.conf /etc/nginx/nginx.conf
 ln -s /etc/nginx/sites-available/changeme /etc/nginx/sites-enabled/
 service nginx reload
 
+# let's ask michael schumacher for help
+sudo curl http://repo.varnish-cache.org/debian/GPG-key.txt | sudo apt-key add -
+# the following line has not been tested yet
+echo "deb http://repo.varnish-cache.org/ubuntu/ lucid varnish-3.0" >> /etc/apt/sources.list
+# let's refresh our repo's
+sudo apt-get update
+# and install Varnish
+sudo apt-get install varnish libvarnish-dev
+# now we have to configure Varnish 
+## lines here
+
 # make installation done
 # will create a better solution later on
 mkdir /etc/nginxCaching/done
