@@ -8,9 +8,10 @@ script_dir="/etc/nginxCaching"
 if [ -d "$script_dir" ];
 then
 echo 'The nginxCaching folder exist already, please delete the folder and start over. If you update nginxCaching with new configuration files the installer may crash.'
-exit
+exit 1
 else
 sudo wget https://raw.github.com/jaymaree/nginxCaching/beta/configs/default.conf -O /etc/nginxCaching/configs/default.conf
+sudo wget https://raw.github.com/jaymaree/nginxCaching/beta/configs/nginx.conf -O /etc/nginxCaching/configs/nginx.conf
 # and all the other configs
 fi
 if [ $(dpkg-query -W -f='${Status}' sudo 2>/dev/null | grep -c "ok installed") -eq 0 ]
@@ -26,6 +27,40 @@ echo '[Error]: You need to run this script under an account that has access to s
 exit 1
 fi
 
-# install service
+# before we will install all necessary packages, we'll create some folders
+# we will use the following folder as default
+mkdir -p /srv/changeme/html
+
+# install services
+# install the web proxy
 echo '[apt-get] Install nginx'
-sudo apt-get install nginx &> /dev/null
+sudo apt-get install nginx -y &> /dev/null
+
+# ok, now we need the correct php version for nginx
+echo '[apt-get] Install php5-fpm'
+apt-get install php5-fpm -y &> /dev/null
+
+# and yes, we need a mysql database management tool
+apt-get install phpmyadmin -y &> /dev/null
+# would you like to access the tool by your site? uncomment the next line ( default uncommented )
+ln -s /usr/share/phpmyadmin /srv/changeme/html
+
+# let's download the latest wordpress version to a secure location
+# well.. first we need to create a directory ofcourse
+mkdir -p /etc/nginxCaching/wordpress
+# ok let's download now
+wget -O http://wordpress.org/latest.tar.gz /etc/nginxCaching/wordpress/latest.tar.gz
+# unpack the tar.gz
+# code will come here
+
+# let's move the default config to nginx
+mv /etc/nginxCaching/configs/default.conf /etc/nginx/sites-available/changeme
+# let's move the modified nginx configuration
+rm /etc/nginx/nginx.conf 
+mv /etc/nginxCaching/configs/nginx.conf /etc/nginx/nginx.conf
+# now we need a symbolic link
+ln -s /etc/nginx/sites-available/changeme /etc/nginx/sites-enabled/
+service nginx reload
+
+
+

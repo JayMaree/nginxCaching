@@ -1,0 +1,35 @@
+server {
+                listen 80;
+                root /srv/changeme/html;
+                index index.php index.html index.htm;
+                # Make site accessible from the URL
+                server_name changeme.com www.changeme.com;
+                access_log /var/log/nginx/changeme.com-access.log;
+    error_log /var/log/nginx/changeme.com-error.log;
+#                location / {
+#                                try_files $uri $uri/ =404;
+#                }
+
+location / {
+        try_files $uri $uri/ /index.php?q=$request_uri;
+}
+error_page 404 /404.html;
+                location ~ \.php$ {
+                                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                                # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini 
+                                # With php5-cgi alone:
+                                #fastcgi_pass 127.0.0.1:9000;
+                                # With php5-fpm:
+                                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                                fastcgi_index index.php;
+                                include fastcgi_params;
+                }
+location ~ /\.ht {
+deny all;
+               }
+              # let's put a expiry cache on
+location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires 1w;
+        log_not_found off;
+ }
+}
