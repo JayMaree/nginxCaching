@@ -34,14 +34,14 @@ mkdir -p /srv/changeme/html
 # install services
 # install the web proxy
 echo '[apt-get] Install nginx'
-apt-get install nginx -y
+apt-get install nginx
 
 # ok, now we need the correct php version for nginx
 echo '[apt-get] Install php5-fpm'
-apt-get install php5-fpm -y
+apt-get install php5-fpm
 
 # and yes, we need a mysql database management tool
-apt-get install phpmyadmin -y
+apt-get install phpmyadmin
 # would you like to access the tool by your site? uncomment the next line ( default uncommented )
 ln -s /usr/share/phpmyadmin /srv/changeme/html
 
