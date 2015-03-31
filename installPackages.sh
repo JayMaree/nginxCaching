@@ -34,24 +34,27 @@ mkdir -p /srv/changeme/html
 # install services
 # install the web proxy
 echo '[apt-get] Install nginx'
-apt-get install nginx -y &> /dev/null
+apt-get install nginx -y
 
 # ok, now we need the correct php version for nginx
 echo '[apt-get] Install php5-fpm'
-apt-get install php5-fpm -y &> /dev/null
+apt-get install php5-fpm -y
 
 # and yes, we need a mysql database management tool
-apt-get install phpmyadmin -y &> /dev/null
+apt-get install phpmyadmin -y
 # would you like to access the tool by your site? uncomment the next line ( default uncommented )
 ln -s /usr/share/phpmyadmin /srv/changeme/html
 
 # let's download the latest wordpress version to a secure location
 # well.. first we need to create a directory ofcourse
-mkdir -p /etc/nginxCaching/wordpress
+mkdir -p /etc/nginxCaching/downloads
 # ok let's download now
-wget -O http://wordpress.org/latest.tar.gz /etc/nginxCaching/wordpress/latest.tar.gz
+wget http://wordpress.org/latest.tar.gz /etc/nginxCaching/downloads/latest.tar.gz
 # unpack the tar.gz
 # code will come here
+tar -xvzf /etc/nginxCaching/wordpress/latest.tar.gz
+cp -R /etc/nginxCaching/downloads/wordpress/* /srv/changeme/html
+
 
 # let's move the default config to nginx
 mv /etc/nginxCaching/configs/changeme /etc/nginx/sites-available/changeme
@@ -69,7 +72,9 @@ echo "deb http://repo.varnish-cache.org/ubuntu/ lucid varnish-3.0" >> /etc/apt/s
 # let's refresh our repo's
 apt-get update
 # and install Varnish
-apt-get install varnish libvarnish-dev
+apt-get install libvarnishapi1
+apt-get install libvarnish1
+apt-get install varnish
 # now we have to configure Varnish 
 ## lines here
 
