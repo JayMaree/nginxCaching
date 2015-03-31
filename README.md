@@ -14,7 +14,7 @@ Basic security
 
 Installation
 -------
-- Please create a folder /etc/nginxCaching and put the git repo in that particular folder.
+- Clone the git in /etc/ so the folder nginxCaching will be created as /etc/nginxCaching
 
 Canonical source
 -------
