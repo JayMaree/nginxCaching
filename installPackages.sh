@@ -41,6 +41,7 @@ echo '[apt-get] Install php5-fpm'
 apt-get install php5-fpm
 
 # and yes, we need a mysql database management tool
+apt-get install mysql-server
 apt-get install phpmyadmin
 # would you like to access the tool by your site? uncomment the next line ( default uncommented )
 ln -s /usr/share/phpmyadmin /srv/changeme/html
@@ -77,14 +78,24 @@ apt-get install libvarnish1
 apt-get install varnish
 # now we have to configure Varnish 
 ## config lines here...
+rm /etc/default/varnish
+sudo wget https://raw.githubusercontent.com/JayMaree/nginxCaching/beta/configs/varnish -O /etc/default/varnish
+rm /etc/varnish/default.vcl
+sudo wget https://raw.githubusercontent.com/JayMaree/nginxCaching/beta/configs/default.vcl -O /etc/varnish/default.vcl
+rm /etc/nginx/sites-enabled/default
 
 chown root:www-data /srv/changeme/html
 chmod 775 /srv/changeme/html
-cat "Does the website work?" > /srv/changeme/html/index.html
-service nginx start
+echo "Does the website work?" > /srv/changeme/html/index.html
+service nginx restart
 
 # make installation done
 # will create a better solution later on
 mkdir /etc/nginxCaching/done
+
+# let's test the combination of nignx and varnish
+varnishstat
+
+# finished!
 
 
