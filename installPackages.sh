@@ -50,11 +50,10 @@ ln -s /usr/share/phpmyadmin /srv/changeme/html
 # well.. first we need to create a directory ofcourse
 mkdir -p /etc/nginxCaching/downloads
 # ok let's download now
-wget http://wordpress.org/latest.tar.gz /etc/nginxCaching/downloads/latest.tar.gz
+wget /etc/nginxCaching/downloads/latest.tar.gz http://wordpress.org/latest.tar.gz 
 # unpack the tar.gz
 # code will come here
-tar -xvzf /etc/nginxCaching/downloads/latest.tar.gz
-cp -R /etc/nginxCaching/downloads/wordpress/* /srv/changeme/html
+tar -C /srv/changeme/html -xvzf /etc/nginxCaching/downloads/latest.tar.gz
 
 
 # let's move the default config to nginx
@@ -96,6 +95,8 @@ mkdir /etc/nginxCaching/done
 # let's test the combination of nignx and varnish
 varnishstat
 
-# finished!
+# finish echo's
+echo 'The installation has been finished!'
+echo 'The wordpress installation ( as test ) has been downloaded into the www root /srv/changeme/html/wordpress'
 
 
