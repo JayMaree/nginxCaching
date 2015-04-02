@@ -7,7 +7,7 @@ nginxCaching  - What? Well, read the following lines:
 
 Nice to have
 -------
-1) Fully automated installation ( a part is already coded )
+1) A mechanism so you should not have to press the y button again and again.
 2) ... more will come
 
 Basic security
