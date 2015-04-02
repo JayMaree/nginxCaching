@@ -1,10 +1,9 @@
 nginxCaching  - What? Well, read the following lines:
 =============
 
-- Super secured hosting ( monitoring - scanned - firewalled )
 - High speed hosting ( nginx - caching - wordpress - gzip )
-- High end CDN solutions ( geo based - high speed - alot space )
 - High speed multi channeled wordpress hosting
+- more will come
 
 Nice to have
 -------
@@ -20,6 +19,7 @@ Basic security
 Installation
 -------
 - Clone the git in /etc/ so the folder nginxCaching will be created as /etc/nginxCaching
+- Installation has been tested on Debian 7.8
 
 Canonical source
 -------
