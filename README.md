@@ -7,14 +7,14 @@ nginxCaching  - What? Well, read the following lines:
 
 Nice to have
 -------
-1) A mechanism so you should not have to press the y button again and again.
-2) ... more will come
+- A mechanism so you should not have to press the y button again and again.
+- ... more will come
 
 Basic security
 -------
-1) Start using SSH keys
-2) Start using monitoring software or just analyse your log files
-3) Setup iptables, we'll create a configuration when the project has been finished
+- Start using SSH keys
+- Start using monitoring software or just analyse your log files
+- Setup iptables, we'll create a configuration when the project has been finished
 
 Installation
 -------

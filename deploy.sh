@@ -170,9 +170,9 @@ echo "deb http://repo.varnish-cache.org/ubuntu/ lucid varnish-3.0" >> /etc/apt/s
 # let's refresh our repo's
 apt-get update
 # and install Varnish
-apt-get install libvarnishapi1
-apt-get install libvarnish1
-apt-get install varnish
+apt-get install - libvarnishapi1
+apt-get install -y libvarnish1
+apt-get install -y varnish
 # now we have to configure Varnish 
 ## config lines here...
 rm /etc/default/varnish
